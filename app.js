@@ -24,7 +24,7 @@ app.post('/api/headerdata',(req,res)=>{
     console.log(req.headers)
     console.log(req.headers.authorization)
     res.json({
-        message:"Headers Received"
+        message:"Headers Receiveds "
     })
 })
 
