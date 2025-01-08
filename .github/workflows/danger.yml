@@ -1,0 +1,27 @@
+name: Danger.js CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Danger.js
+        run: npx danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

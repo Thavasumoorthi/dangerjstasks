@@ -1,0 +1,16 @@
+{
+  "name": "dangerjstask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "danger": "^12.3.3",
+    "dangerjstask": "file:",
+    "express": "^4.21.2"
+  }
+}
