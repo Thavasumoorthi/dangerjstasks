@@ -11,6 +11,7 @@
   "dependencies": {
     "danger": "^12.3.3",
     "dangerjstask": "file:",
+    "Thavasu":"v.1.01.",
     "express": "^4.21.2"
   }
 }
