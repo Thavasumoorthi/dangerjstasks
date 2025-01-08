@@ -42,5 +42,16 @@ if (srcFiles.length > 0 && testFiles.length === 0) {
   fail("You modified source files but did not add or update any tests.");
 }
 
+
+
+//Rule 5:changes made to the Lockfile/package.json
+
+const packageChanged = danger.git.modified_files.includes('package.json');
+if(packageChanged)
+{
+  fail("Changes were made to package.json")
+}
+
+
 // All checks passed message
 message("✅ All Danger.js checks passed successfully!");
