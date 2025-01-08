@@ -52,6 +52,11 @@ if(packageChanged)
   fail("Changes were made to package.json")
 }
 
+//Rule 6:Ensure PR have assignee
+const pr = danger.github.pr
+if (pr.assignee === null) {
+  fail("Please assign someone to merge this PR, and optionally include people who should review.");
+}
 
 // All checks passed message
 message("✅ All Danger.js checks passed successfully!");
