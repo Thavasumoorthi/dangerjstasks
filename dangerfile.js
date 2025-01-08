@@ -58,5 +58,29 @@ if (pr.assignee === null) {
   fail("Please assign someone to merge this PR, and optionally include people who should review.");
 }
 
+
+//Rule 7:
+
+const modifiledFiles =danger.git.modified_files
+const createdFiles=danger.git.created_files
+
+
+const sourceFile='src/user.js';
+const testFile='test/usertest.js'
+
+// Check if the main file was modified or created
+const mainFileChanged = modifiledFiles.includes(sourceFile) || createdFiles.includes(sourceFile);
+
+// Check if the corresponding test file was modified or created
+const testFileChanged = modifiledFiles.includes(testFile) || createdFiles.includes(testFile);
+
+// Warn or fail if the main file was changed but the test file was not
+if (mainFileChanged && !testFileChanged) {
+
+  warn("main file changed but test file or nit changed")
+}
+
+
+
 // All checks passed message
 message("✅ All Danger.js checks passed successfully!");
