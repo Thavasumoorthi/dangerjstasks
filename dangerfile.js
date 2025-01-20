@@ -1,5 +1,60 @@
+/*1)
+
+const { execSync } = require('child_process');
 import { danger, warn, fail, message } from "danger";
 
+try {
+  // Get modified files (unstaged)
+  const modifiedFiles = execSync('git diff --name-only').toString().split('\n').filter(Boolean);
+
+  console.log("modifiedFiles is ",modifiedFiles)
+
+  // Get created (added) files (staged)
+  const createdFiles = execSync('git diff --name-only --cached').toString().split('\n').filter(Boolean);
+ 
+  console.log("created file is ",createdFiles)
+
+
+
+  // Combine both modified and created files
+  const allFiles = [...modifiedFiles, ...createdFiles];
+
+  console.log("Modified and Created Files:", allFiles);
+
+  // Check if there are any modified or added files and show warning or failure
+  if (allFiles.length > 0) {
+    // You can apply any condition here for specific file types or any other check
+    if (allFiles.some(file => file.endsWith('.js') || file.endsWith('.ts'))) {
+      warn("⚠️ You have modified or created JavaScript/TypeScript files. Please review your changes.");
+    }
+
+    // Example of failure condition (if you have specific files you don't want to see added or modified)
+    if (allFiles.some(file => file.includes('sensitive'))) {
+      fail("❌ Sensitive files should not be modified or added.");
+    }
+  } else {
+    warn("⚠️ No modified or created files detected.");
+  }
+
+} catch (error) {
+  console.error("Error fetching files:", error);
+}
+
+*/
+
+//2)--------------------------------
+
+import { danger, warn, fail, message } from "danger";
+
+
+console.log("added file is",danger.git.created_files)
+console.log("modified file is",danger.git.modified_files)
+
+
+
+//3)--------------------------
+
+/*
 // Rule 1: Ensure PR has a proper title and description
 if (danger.github.pr.title.length < 10) {
   fail("PR title should be at least 10 characters long.");
@@ -81,3 +136,6 @@ if (mainFileChanged && !testFileChanged) {
 
 // All checks passed message
 message("✅ All Danger.js checks passed successfully!");
+
+
+*/
