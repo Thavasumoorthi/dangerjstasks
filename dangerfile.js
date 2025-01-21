@@ -42,6 +42,7 @@ try {
 
 */
 
+/*
 //2)--------------------------------
 
 import { danger, warn, fail, message } from "danger";
@@ -49,12 +50,13 @@ import { danger, warn, fail, message } from "danger";
 
 console.log("added file is",danger.git.created_files)
 console.log("modified file is",danger.git.modified_files)
-
+*/
 
 
 //3)--------------------------
+import { danger, warn, fail, message } from "danger";
 
-/*
+
 // Rule 1: Ensure PR has a proper title and description
 if (danger.github.pr.title.length < 10) {
   fail("PR title should be at least 10 characters long.");
@@ -138,4 +140,3 @@ if (mainFileChanged && !testFileChanged) {
 message("✅ All Danger.js checks passed successfully!");
 
 
-*/

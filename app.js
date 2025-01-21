@@ -7,7 +7,6 @@ app.use(express.json())
 
 
 app.get("/",(req,res)=>{
-    crossOriginIsolated.log("hi")
     res.json({
         message:"Hello I am backend developer name is thavasumoorthi"
     })
@@ -48,6 +47,6 @@ app.post("/api/queryheader",(req,res)=>{
 
 
 app.listen(3000,()=>{
-
+    console.log("app is running on the port 3000")
     console.log("App is running on the port 3000")
 })
