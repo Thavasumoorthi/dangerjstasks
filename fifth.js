@@ -1,4 +1,3 @@
 a=0
-b=10
-
-console.log("yswssws")
+console.log("a")
+console.log("b")

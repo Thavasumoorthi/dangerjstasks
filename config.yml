@@ -9,7 +9,6 @@ database:
   port: 5432
   username: "dbuser"
   password: "dbpassword"
-  db:"USER"
 
 server:
   port: 3000

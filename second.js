@@ -1,1 +1,1 @@
-console
+console.log("added some console log")
