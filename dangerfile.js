@@ -83,7 +83,7 @@ const newOrModifiedFiles = [
 ];
 
 newOrModifiedFiles.forEach(async (file) => {
-  if (file.endsWith(".js") || file.endsWith(".ts")) {
+  if (file.endsWith(".js") || file.endsWith(".ts")   && file!='dangerfile.js') {
     const fileContent = await danger.github.utils.fileContents(file);
     if (fileContent.includes("console.log")) {
       fail(`Please remove console.log from ${file}`);
