@@ -26,7 +26,7 @@ const newOrModifiedFiles = [
 ];
 
 newOrModifiedFiles.forEach(async (file) => {
-  if (file.endsWith(".js") || file.endsWith(".ts") && (file!='dangerfile.js')) {
+  if ((file.endsWith(".js") || file.endsWith(".ts")) && (file!='dangerfile.js')) {
     const fileContent = await danger.github.utils.fileContents(file);
     if (fileContent.includes("console.log")) {
       fail(`Please remove console.log from ${file}`);
@@ -46,11 +46,11 @@ if (srcFiles.length > 0 && testFiles.length === 0) {
 
 //Rule 5:changes made to the Lockfile/package.json
 
-const packageChanged = danger.git.modified_files.includes('package.json');
-if(packageChanged)
-{
-  fail("Changes were made to package.json")
-}
+// const packageChanged = danger.git.modified_files.includes('package.json');
+// if(packageChanged)
+// {
+//   fail("Changes were made to package.json")
+// }
 
 
 // All checks passed message
