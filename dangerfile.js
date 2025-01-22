@@ -76,7 +76,7 @@ sensitiveFiles.forEach((file) => {
   }
 });
 
-// Rule 3: Fail if console.log() is used in JS/TS files
+// Rule 3: Fail if console.log() is used 
 const newOrModifiedFiles = [
   ...danger.git.modified_files,
   ...danger.git.created_files,
