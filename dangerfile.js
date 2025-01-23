@@ -54,8 +54,8 @@ if(packageChanged)
 
 
 //Rule 6:Ensure PR have assignee
-const pr = danger.github.pr
-if (pr.assignee === null) {
+// const pr = danger.github.pr
+if (danger.github.pr.assignee === null) {
   fail("Please assign someone to merge this PR, and optionally include people who should review.");
 }
 
