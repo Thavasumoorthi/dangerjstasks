@@ -46,11 +46,38 @@ if (srcFiles.length > 0 && testFiles.length === 0) {
 
 //Rule 5:changes made to the Lockfile/package.json
 
-// const packageChanged = danger.git.modified_files.includes('package.json');
-// if(packageChanged)
-// {
-//   fail("Changes were made to package.json")
-// }
+const packageChanged = danger.git.modified_files.includes('package.json');
+if(packageChanged)
+{
+  fail("Changes were made to package.json")
+}
+
+
+//Rule 6:Ensure PR have assignee
+const pr = danger.github.pr
+if (pr.assignee === null) {
+  fail("Please assign someone to merge this PR, and optionally include people who should review.");
+}
+
+
+//Rule 7:
+
+const modifiledFiles =danger.git.modified_files
+const createdFiles=danger.git.created_files
+
+
+const sourceFile='src/user.js';
+const testFile='test/usertest.js'
+
+const mainFileChanged = modifiledFiles.includes(sourceFile) || createdFiles.includes(sourceFile);
+
+const testFileChanged = modifiledFiles.includes(testFile) || createdFiles.includes(testFile);
+
+if (mainFileChanged && !testFileChanged) {
+
+  warn("main file changed but test file or not changed")
+}
+
 
 
 // All checks passed message
