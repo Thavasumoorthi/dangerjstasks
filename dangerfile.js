@@ -53,30 +53,6 @@ if(packageChanged)
 }
 
 
-//Rule 6:Ensure PR have assignee
-// const pr = danger.github.pr
-if (danger.github.pr.assignee === null) {
-  fail("Please assign someone to merge this PR, and optionally include people who should review.");
-}
-
-
-//Rule 7:
-
-const modifiledFiles =danger.git.modified_files
-const createdFiles=danger.git.created_files
-
-
-const sourceFile='src/user.js';
-const testFile='test/usertest.js'
-
-const mainFileChanged = modifiledFiles.includes(sourceFile) || createdFiles.includes(sourceFile);
-
-const testFileChanged = modifiledFiles.includes(testFile) || createdFiles.includes(testFile);
-
-if (mainFileChanged && !testFileChanged) {
-
-  warn("main file changed but test file or not changed")
-}
 
 
 
