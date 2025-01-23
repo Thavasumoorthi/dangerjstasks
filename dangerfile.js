@@ -26,7 +26,7 @@ const newOrModifiedFiles = [
 ];
 
 newOrModifiedFiles.forEach(async (file) => {
-  if (file.endsWith(".js") || file.endsWith(".ts")) {
+  if ((file.endsWith(".js") || file.endsWith(".ts")) && (file!='dangerfile.js')) {
     const fileContent = await danger.github.utils.fileContents(file);
     if (fileContent.includes("console.log")) {
       fail(`Please remove console.log from ${file}`);
@@ -78,6 +78,33 @@ const testFileChanged = modifiledFiles.includes(testFile) || createdFiles.includ
 if (mainFileChanged && !testFileChanged) {
 
   warn("main file changed but test file or nit changed")
+}
+
+
+
+//Rule 6:Ensure PR have assignee
+const pr = danger.github.pr
+if (pr.assignee === null) {
+  fail("Please assign someone to merge this PR, and optionally include people who should review.");
+}
+
+
+//Rule 7:
+
+const modifiledFiles =danger.git.modified_files
+const createdFiles=danger.git.created_files
+
+
+const sourceFile='src/user.js';
+const testFile='test/usertest.js'
+
+const mainFileChanged = modifiledFiles.includes(sourceFile) || createdFiles.includes(sourceFile);
+
+const testFileChanged = modifiledFiles.includes(testFile) || createdFiles.includes(testFile);
+
+if (mainFileChanged && !testFileChanged) {
+
+  warn("main file changed but test file or not changed")
 }
 
 
